@@ -200,7 +200,7 @@ master:
   ##
   ## Can be used to specify command line arguments, for example:
   ##
-  command: 
+  command: "redis-server"
   ## Additional Redis configuration for the master nodes
   ## ref: https://redis.io/topics/config
   ##
@@ -212,7 +212,15 @@ master:
   ## extraFlags:
   ##  - "--maxmemory-policy volatile-ttl"
   ##  - "--repl-backlog-size 1024mb"
-  extraFlags: []
+  extraFlags: 
+   - "--loadmodule /usr/lib/redis/modules/redisgraph.so"
+   - "--loadmodule /usr/lib/redis/modules/redisearch.so"
+   - "--loadmodule /usr/lib/redis/modules/redistimeseries.so"
+   - "--loadmodule /usr/lib/redis/modules/rejson.so"
+   - "--loadmodule /usr/lib/redis/modules/rebloom.so"
+   - "--loadmodule /usr/lib/redis/modules/redisgears.so"
+   - "--loadmodule /usr/lib/redis/modules/redisai.so"
+   - "PythonHomeDir opt/redislabs/lib/modules/python3"
   ## Comma-separated list of Redis commands to disable
   ##
   ## Can be used to disable Redis commands for security reasons.
@@ -347,13 +355,21 @@ slave:
   port: 6379
   ## Can be used to specify command line arguments, for example:
   ##
-  command: 
+  command: "redis-server"
   ## Additional Redis configuration for the slave nodes
   ## ref: https://redis.io/topics/config
   ##
   configmap:
   ## Redis extra flags
-  extraFlags: []
+  extraFlags: 
+   - "--loadmodule /usr/lib/redis/modules/redisgraph.so"
+   - "--loadmodule /usr/lib/redis/modules/redisearch.so"
+   - "--loadmodule /usr/lib/redis/modules/redistimeseries.so"
+   - "--loadmodule /usr/lib/redis/modules/rejson.so"
+   - "--loadmodule /usr/lib/redis/modules/rebloom.so"
+   - "--loadmodule /usr/lib/redis/modules/redisgears.so"
+   - "--loadmodule /usr/lib/redis/modules/redisai.so"
+   - "PythonHomeDir opt/redislabs/lib/modules/python3"
   ## List of Redis commands to disable
   disableCommands:
   - FLUSHDB
